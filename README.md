@@ -1,3 +1,6 @@
+# 说明
+此项目基于 [zfile](https://github.com/zfile-dev)修改，仅用于学习目的。
+
 # ZFile
 
 [![ZFile License](https://img.shields.io/badge/license-MIT-blue.svg?longCache=true&style=flat-square)](https://github.com/zfile-dev/zfile/blob/main/LICENSE)
@@ -15,11 +18,12 @@ ZFile 是一个适用于个人的在线网盘(列目录)程序，可以将你各
 
 ## 快速开始
 
-请参考部署文档: [https://docs.zfile.vip](https://docs.zfile.vip)
+请参考部署文档: [https://github.com/guchengod/zpan/wiki](https://github.com/guchengod/zpan/wiki)
 
-## 在线体验
-
-[https://demo.zfile.vip](https://demo.zfile.vip)
+## 📌 开发任务列表
+- [ ] 实现多线程下载
+- [ ] 添加断点续传
+- [ ] 对接下载器
 
 ## 功能预览
 
@@ -55,18 +59,3 @@ ZFile 是一个适用于个人的在线网盘(列目录)程序，可以将你各
 ![后台设置-添加存储源（世纪互联）](https://cdn.jun6.net/uPic/2022/08/13/add-storage2.png)
 ### 后台设置-显示设置
 ![后台设置-显示设置](https://cdn.jun6.net/uPic/2022/08/13/view-setting.png)
-
-
-## 支持作者
-
-如果本项目对你有帮助，请作者喝杯咖啡吧。
-
-<img src="https://cdn.jun6.net/2021/03/27/152704e91f13d.png" width="400" alt="赞助我">
-
-## Status
-
-![Alt](https://repobeats.axiom.co/api/embed/580333f83b91087e713f15497e6433c50e1da090.svg "Repobeats analytics image")
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=zfile-dev/zfile&type=Date)](https://star-history.com/#zfile-dev/zfile&Date)
