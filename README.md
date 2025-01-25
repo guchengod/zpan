@@ -21,6 +21,7 @@ ZFile 是一个适用于个人的在线网盘(列目录)程序，可以将你各
 请参考部署文档: [https://github.com/guchengod/zpan/wiki](https://github.com/guchengod/zpan/wiki)
 
 ## 📌 开发任务列表
+- [ ] 添加postgresql支持
 - [ ] 实现大文件分段上传
 - [ ] 添加断点续传
 - [ ] 对接下载器
