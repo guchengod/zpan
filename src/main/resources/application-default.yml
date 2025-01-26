@@ -1,0 +1,60 @@
+zfile:
+  onedrive:
+    clientId: 09939809-c617-43c8-a220-a93c1513c5d4
+    clientSecret: _l:zI-_yrW75lV8M61K@z.I2K@B/On6Q
+    redirectUri: https://zfile.jun6.net/onedrive/callback
+    scope: offline_access User.Read Files.ReadWrite.All Sites.Read.All Sites.ReadWrite.All
+  onedrive-china:
+    clientId: 4a72d927-1907-488d-9eb2-1b465c53c1c5
+    clientSecret: Y9CEA=82da5n-y_]KAWAgLH3?R9xf7Uw
+    redirectUri: https://zfile.jun6.net/onedrive/china-callback
+    scope: offline_access User.Read Files.ReadWrite.All Sites.Read.All Sites.ReadWrite.All
+  gd:
+    clientId: 659016983345-vlp413rgrl2spe5d53ml16p2btslfa44.apps.googleusercontent.com
+    clientSecret: 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
+    redirectUri: http://localhost:8080/gd/callback
+    scope: https://www.googleapis.com/auth/drive
+  log:
+    encoder: UTF-8
+
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm
+    time-zone: GMT+8
+  web:
+    resources:
+      chain:
+        compressed: true
+  servlet:
+    multipart:
+      max-request-size: -1
+      max-file-size: -1
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  main:
+    allow-circular-references: true
+  flyway:
+    clean-disabled: true
+    enabled: false
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+  mapper-locations: 
+    - classpath*:mapper/*.xml
+    - classpath*:com/gitee/sunchenbin/mybatis/actable/mapping/*/*.xml
+
+knife4j:
+  enable: true
+  setting:
+    enable-swagger-models: true
+
+sa-token:
+  is-print: false
+  token-name: zfile-token
+
+server:
+  compression:
+    enabled: true 

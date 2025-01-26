@@ -1,0 +1,1 @@
+ALTER TABLE system_config ALTER COLUMN value TYPE text; 

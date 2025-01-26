@@ -13,8 +13,6 @@
     <conversionRule conversionWord="wEx"
                     converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
 
-    <property resource="application.properties"/>
-
     <!-- 单文件最大大小 -->
     <property name="maxFileSize" value="10MB"/>
     <!-- 最大保存时间（天） -->
@@ -24,12 +22,9 @@
     <!-- 日志文件 pattern -->
     <property name="log-file-pattern" value="%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%36.36X{traceId}] [%10.10X{user}] [%15.15X{ip}] [%t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
 
-    <!-- 定义日志的根目录 -->
+    <!-- 从 application.yml 中读取配置 -->
     <springProperty scope="context" name="LOG_HOME" source="zfile.log.path"/>
-    <!-- 定义日志编码 -->
-    <springProperty scope="context" name="LOG_ENCODER" source="zfile.log.encoder"/>
-
-    <!-- 定义应用名，用于日志文件前缀 -->
+    <springProperty scope="context" name="LOG_ENCODER" source="zfile.log.encoder" defaultValue="UTF-8"/>
     <property name="appName" value="zfile"/>
 
     <!-- ch.qos.logback.core.ConsoleAppender 表示控制台输出 -->
@@ -41,9 +36,8 @@
             </filter>
         </springProfile>
 
-        <encoder>
-            <pattern>%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} [%36.36X{traceId}] [%10.10X{user}] [%15.15X{ip}] %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(%-6L){yellow} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}</pattern>
-            <charset>${LOG_ENCODER}</charset>
+        <encoder charset="${LOG_ENCODER}">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) %cyan(%logger{50}) - %msg%n</pattern>
         </encoder>
     </appender>
 

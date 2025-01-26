@@ -14,12 +14,27 @@
     <result column="referer" jdbcType="VARCHAR" property="referer" />
     <result column="download_type" jdbcType="VARCHAR" property="downloadType" />
   </resultMap>
+  
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    `id`, `path`, `storage_key`, `create_time`, `ip`, `user_agent`, `referer`, `short_key`, `download_type`
+    <choose>
+      <when test="_databaseId == 'postgresql'">
+        "id", "path", "storage_key", "create_time", "ip", "user_agent", "referer", "short_key", "download_type"
+      </when>
+      <otherwise>
+        `id`, `path`, `storage_key`, `create_time`, `ip`, `user_agent`, `referer`, `short_key`, `download_type`
+      </otherwise>
+    </choose>
+  </sql>
+
+  <sql id="Column_StorageKey">
+    <choose>
+      <when test="_databaseId == 'postgresql'">"storage_key"</when>
+      <otherwise>`storage_key`</otherwise>
+    </choose>
   </sql>
 
   <delete id="deleteByStorageKey">
-      delete from download_log where storage_key = #{storageKey}
-    </delete>
+    delete from download_log where <include refid="Column_StorageKey"/> = #{storageKey}
+  </delete>
 </mapper>

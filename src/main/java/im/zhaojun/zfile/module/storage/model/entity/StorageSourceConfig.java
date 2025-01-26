@@ -38,12 +38,12 @@ public class StorageSourceConfig implements Serializable {
     private StorageTypeEnum type;
 
 
-    @TableField(value = "title")
+    @TableField("title")
     @ApiModelProperty(value = "存储源属性名称", example = "Bucket 名称")
     private String title;
 
 
-    @TableField(value = "storage_id")
+    @TableField("storage_id")
     @ApiModelProperty(value = "存储源 id", example = "1")
     private Integer storageId;
 

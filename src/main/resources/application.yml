@@ -1,0 +1,53 @@
+server:
+  port: 8080
+
+
+spring:
+  config:
+    import: classpath:application-default.yml
+  profiles:
+    active: prod
+  ## postgresql
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://192.168.3.30:30500/zpan
+    username: sgw
+    password: sungaowei,.
+#  ## mysql
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/zfile?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+#    username: root
+#    password: password
+#  ## postgresql
+#  datasource:
+#    driver-class-name: org.sqlite.JDBC
+#    url: jdbc:sqlite:${zfile.db.path}
+
+  flyway:
+    ignore-migration-patterns: 
+      - V5__.*
+      - V6__.*
+      - V10__.*
+
+zfile:
+  debug: false
+  log:
+    path: ${user.home}/.zfile-v4/logs
+    encoder: UTF-8
+  db:
+    path: ${user.home}/.zfile-v4/db/zfile
+  preview:
+    text:
+      maxFileSizeKb: 512
+  dbCache:
+    enable: true
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    database-id: postgresql
+  global-config:
+    db-config:
+      id-type: auto
+      column-format: "\"%s\""

@@ -1,0 +1,1 @@
+ALTER TABLE download_log ALTER COLUMN storage_key TYPE varchar(64); 

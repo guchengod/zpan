@@ -3,9 +3,17 @@ package im.zhaojun.zfile.core.config;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.core.injector.AbstractMethod;
+import com.baomidou.mybatisplus.core.injector.DefaultSqlInjector;
+import com.baomidou.mybatisplus.core.injector.ISqlInjector;
+import com.baomidou.mybatisplus.core.injector.methods.Insert;
+import com.baomidou.mybatisplus.core.injector.methods.UpdateById;
+import com.baomidou.mybatisplus.core.metadata.TableInfo;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.mapping.DatabaseIdProvider;
+import org.apache.ibatis.mapping.VendorDatabaseIdProvider;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +22,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.Properties;
+import java.util.List;
 
 /**
  * mybatis-plus 配置类
@@ -51,16 +61,41 @@ public class MyBatisPlusConfig {
         }
     }
     
+    @Bean
+    public DatabaseIdProvider databaseIdProvider() {
+        VendorDatabaseIdProvider databaseIdProvider = new VendorDatabaseIdProvider();
+        Properties properties = new Properties();
+        properties.setProperty("PostgreSQL", "postgresql");
+        properties.setProperty("MySQL", "mysql");
+        properties.setProperty("SQLite", "sqlite");
+        databaseIdProvider.setProperties(properties);
+        return databaseIdProvider;
+    }
+    
     /**
      * mybatis plus 分页插件配置
      */
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() throws SQLException {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
-        String databaseProductName = dataSource.getConnection().getMetaData().getDatabaseProductName();
-        DbType dbType = DbType.getDbType(databaseProductName);
-        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(dbType));
+        String dbType = dataSource.getConnection().getMetaData().getDatabaseProductName();
+        log.info("当前数据库类型: [{}]", dbType);
+        
+        // 添加分页插件
+        PaginationInnerInterceptor paginationInterceptor = new PaginationInnerInterceptor();
+        paginationInterceptor.setDbType(DbType.getDbType(dbType));
+        interceptor.addInnerInterceptor(paginationInterceptor);
         return interceptor;
+    }
+
+    @Bean
+    public com.baomidou.mybatisplus.core.config.GlobalConfig globalConfig() {
+        com.baomidou.mybatisplus.core.config.GlobalConfig conf = new com.baomidou.mybatisplus.core.config.GlobalConfig();
+        com.baomidou.mybatisplus.core.config.GlobalConfig.DbConfig dbConfig = new com.baomidou.mybatisplus.core.config.GlobalConfig.DbConfig();
+        // 设置 id 类型为自增
+        dbConfig.setIdType(com.baomidou.mybatisplus.annotation.IdType.AUTO);
+        conf.setDbConfig(dbConfig);
+        return conf;
     }
 
 }

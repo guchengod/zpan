@@ -12,6 +12,7 @@ public class MyDatabaseIdProvider implements DatabaseIdProvider {
 
     private static final String DATABASE_MYSQL = "MySQL";
     private static final String DATABASE_SQLITE = "SQLite";
+    private static final String DATABASE_POSTGRESQL = "PostgreSQL";
 
     @Override
     public String getDatabaseId(DataSource dataSource) throws SQLException {
@@ -24,6 +25,9 @@ public class MyDatabaseIdProvider implements DatabaseIdProvider {
                 break;
             case DATABASE_SQLITE:
                 dbAlias = "sqlite";
+                break;
+            case DATABASE_POSTGRESQL:
+                dbAlias = "postgresql";
                 break;
             default:
                 break;

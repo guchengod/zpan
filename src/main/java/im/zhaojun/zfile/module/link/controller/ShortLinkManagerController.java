@@ -67,7 +67,7 @@ public class ShortLinkManagerController {
         // 分页和排序
         boolean asc = Objects.equals(queryObj.getOrderDirection(), "asc");
         Page<ShortLink> pages = new Page<ShortLink>(queryObj.getPage(), queryObj.getLimit())
-                                .addOrder(new OrderItem(queryObj.getOrderBy(), asc));
+                                .addOrder(new OrderItem().setColumn(queryObj.getOrderBy()).setAsc(true));
     
     
         String dateFrom = queryObj.getDateFrom();

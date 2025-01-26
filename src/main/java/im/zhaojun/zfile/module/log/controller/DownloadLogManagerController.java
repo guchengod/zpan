@@ -62,7 +62,7 @@ public class DownloadLogManagerController {
         // 分页和排序
         boolean asc = Objects.equals(queryDownloadLogRequest.getOrderDirection(), "asc");
         Page<DownloadLog> pages = new Page<DownloadLog>(queryDownloadLogRequest.getPage(), queryDownloadLogRequest.getLimit())
-                .addOrder(new OrderItem(queryDownloadLogRequest.getOrderBy(), asc));
+                .addOrder(new OrderItem().setColumn(queryDownloadLogRequest.getOrderBy()).setAsc(asc));
 
         DownloadLog downloadLog = new DownloadLog();
         QueryWrapper<DownloadLog> queryWrapper =

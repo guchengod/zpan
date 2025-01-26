@@ -5,7 +5,7 @@
     <groupId>im.zhaojun</groupId>
     <artifactId>zfile</artifactId>
     <version>4.1.5</version>
-    <name>zfile</name>
+    <name>zpan</name>
     <packaging>${packaging}</packaging>
     <description>一个在线的文件浏览系统</description>
 
@@ -73,7 +73,12 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.5.3.1</version>
+            <version>3.5.10.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-jsqlparser-4.9</artifactId>
+            <version>3.5.10.1</version>
         </dependency>
 
 
@@ -207,6 +212,13 @@
             <groupId>com.alibaba</groupId>
             <artifactId>dns-cache-manipulator</artifactId>
             <version>1.8.1</version>
+        </dependency>
+
+        <!-- Add PostgreSQL support -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
