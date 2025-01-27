@@ -7,18 +7,12 @@ spring:
     import: classpath:application-default.yml
   profiles:
     active: prod
-  ## postgresql
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://192.168.3.30:30500/zpan
-    username: sgw
-    password: sungaowei,.
 #  ## mysql
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://127.0.0.1:3306/zfile?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
-#    username: root
-#    password: password
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3060/zpan?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: admin
+    password: admin
 #  ## postgresql
 #  datasource:
 #    driver-class-name: org.sqlite.JDBC
@@ -45,9 +39,6 @@ zfile:
 
 mybatis-plus:
   mapper-locations: classpath*:mapper/*.xml
-  configuration:
-    database-id: postgresql
   global-config:
     db-config:
       id-type: auto
-      column-format: "\"%s\""
