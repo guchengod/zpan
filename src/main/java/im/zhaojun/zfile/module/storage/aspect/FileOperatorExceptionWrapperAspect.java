@@ -7,12 +7,13 @@ import im.zhaojun.zfile.core.exception.file.operator.StorageSourceFileOperatorEx
 import im.zhaojun.zfile.core.util.CodeMsg;
 import im.zhaojun.zfile.module.storage.service.base.AbstractBaseFileService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.connector.ClientAbortException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import java.nio.channels.ClosedChannelException;
 
 /**
  * 文件操作异常包装切面, 用于在存储源实现中不用分别捕获异常并处理，而是在此处统一将文件操作异常包装为 {@link StorageSourceFileOperatorException} 异常
@@ -86,7 +87,7 @@ public class FileOperatorExceptionWrapperAspect {
 
 	@AfterThrowing(throwing = "error", value = "execution(public * im.zhaojun.zfile.module.storage.service.base.AbstractProxyTransferService.downloadToStream(..))")
 	public void proxyDownloadExceptionWrapper(JoinPoint point, Throwable error) {
-		if (error instanceof ClientAbortException || error.getCause() instanceof ClientAbortException) {
+		if (error instanceof ClosedChannelException || error.getCause() instanceof ClosedChannelException) {
 			return;
 		}
 		Integer storageId = getStorageId(point);
