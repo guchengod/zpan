@@ -1,0 +1,1 @@
+System.register(["./request-legacy.-200HP3-.js","./index-legacy.DUvvBSvn.js"],(function(t,e){"use strict";var n,r;return{setters:[function(t){n=t.d},function(t){r=t.al}],execute:function(){t("g",(function(t){return r.get(t,{withCredentials:!1})})),t("a",(function(t){return n({url:"/api/parse/content",method:"get",data:t})}))}}}));

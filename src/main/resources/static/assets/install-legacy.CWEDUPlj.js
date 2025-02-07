@@ -1,0 +1,1 @@
+System.register(["./request-legacy.-200HP3-.js"],(function(t,e){"use strict";var n;return{setters:[function(t){n=t.d}],execute:function(){t("i",(function(){return n({url:"/api/install/status",method:"get"})})),t("a",(function(t){return n({url:"/api/install",method:"post",data:t})}))}}}));

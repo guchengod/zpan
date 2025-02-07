@@ -1,0 +1,1 @@
+import{d as o}from"./request-B2kMKzxx.js";const t=t=>o({url:"/admin/login",method:"post",data:t}),a=()=>o({url:"/admin/login/verify-mode",method:"get"}),d=()=>o({url:"/admin/login/captcha",method:"get"}),e=()=>o({url:"/admin/logout",method:"post"}),m=()=>o({url:"/admin/login/check",method:"get"});export{t as a,d as b,m as c,e as d,a as l};
