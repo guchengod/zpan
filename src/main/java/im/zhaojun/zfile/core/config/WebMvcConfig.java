@@ -2,10 +2,6 @@ package im.zhaojun.zfile.core.config;
 
 import im.zhaojun.zfile.module.storage.model.enums.StorageTypeEnum;
 import io.undertow.UndertowOptions;
-import io.undertow.server.handlers.resource.PreCompressedResourceSupplier;
-import io.undertow.server.handlers.resource.Resource;
-import io.undertow.server.handlers.resource.ResourceManager;
-import org.springframework.boot.web.embedded.undertow.UndertowDeploymentInfoCustomizer;
 import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
 import org.springframework.boot.web.server.ConfigurableWebServerFactory;
 import org.springframework.boot.web.server.ErrorPage;
@@ -20,10 +16,7 @@ import org.springframework.web.servlet.config.annotation.ContentNegotiationConfi
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.resource.EncodedResourceResolver;
-import org.springframework.web.servlet.resource.GzipResourceResolver;
 import org.springframework.web.servlet.resource.PathResourceResolver;
-
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -53,12 +46,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public ServletWebServerFactory webServerFactory() {
         UndertowServletWebServerFactory webServerFactory = new UndertowServletWebServerFactory();
 
-        //tomcat 添加对 URL 中特殊符号的支持.
-//        webServerFactory.addConnectorCustomizers(connector -> {
-//            connector.setProperty("relaxedPathChars", "<>[\\]^`{|}%[]");
-//            connector.setProperty("relaxedQueryChars", "<>[\\]^`{|}%[]");
-//        });
-
+        // 添加对 URL 中特殊符号的支持.
         // 启用 HTTP/2 和 Brotli 压缩
         webServerFactory.addBuilderCustomizers(builder -> {
             builder.setServerOption(UndertowOptions.ENABLE_HTTP2, true);  // 启用 HTTP/2
