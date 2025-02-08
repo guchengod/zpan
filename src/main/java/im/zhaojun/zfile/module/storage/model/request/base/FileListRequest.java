@@ -34,6 +34,9 @@ public class FileListRequest {
 	@StringListValue(message = "排序顺序参数异常，只能是 asc 或 desc", vals = {"asc", "desc"})
 	private String orderDirection;
 
+    //搜索值
+    private String searchVal;
+
     public void handleDefaultValue() {
         if (StrUtil.isEmpty(path)) {
             path = "/";
