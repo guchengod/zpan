@@ -18,11 +18,12 @@ public interface BaseFileService {
      * @param   folderPath
      *          文件夹路径
      *
+     * @param searchName
      * @return  文件及文件夹列表
      *
      * @throws  Exception  获取文件列表中出现的异常
      */
-    List<FileItemResult> fileList(String folderPath) throws Exception;
+    List<FileItemResult> fileList(String folderPath, String searchName) throws Exception;
 
     /**
      * 获取单个文件信息

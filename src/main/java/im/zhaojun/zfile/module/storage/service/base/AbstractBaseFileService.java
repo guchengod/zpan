@@ -61,7 +61,7 @@ public abstract class AbstractBaseFileService<P extends IStorageParam> implement
      */
     public void testConnection() {
         try {
-            fileList("/");
+            fileList("/", "");
             isInitialized = true;
         } catch (Exception e) {
             throw new InitializeStorageSourceException(CodeMsg.STORAGE_SOURCE_INIT_FAIL, storageId, "初始化异常, 错误信息为: " + e.getMessage(), e).setResponseExceptionMessage(true);

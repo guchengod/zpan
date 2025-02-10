@@ -52,7 +52,7 @@ public class UpYunServiceImpl extends AbstractBaseFileService<UpYunParam> {
     }
 
     @Override
-    public List<FileItemResult> fileList(String folderPath) throws Exception {
+    public List<FileItemResult> fileList(String folderPath, String searchName) throws Exception {
         ArrayList<FileItemResult> fileItemList = new ArrayList<>();
         String nextMark = null;
 

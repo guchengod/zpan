@@ -62,7 +62,7 @@ public class LocalServiceImpl extends AbstractProxyTransferService<LocalParam> {
 
 
     @Override
-    public List<FileItemResult> fileList(String folderPath) throws FileNotFoundException {
+    public List<FileItemResult> fileList(String folderPath, String searchName) throws FileNotFoundException {
         checkPathSecurity(folderPath);
 
         List<FileItemResult> fileItemList = new ArrayList<>();
@@ -75,7 +75,7 @@ public class LocalServiceImpl extends AbstractProxyTransferService<LocalParam> {
             throw new FileNotFoundException("文件不存在");
         }
 
-        File[] files = file.listFiles();
+        File[] files = org.apache.commons.lang3.StringUtils.isEmpty(searchName) ? file.listFiles() : file.listFiles((dir, name) -> name.contains(searchName));
 
         if (files == null) {
             return fileItemList;

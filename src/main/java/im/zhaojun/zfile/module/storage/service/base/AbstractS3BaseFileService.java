@@ -35,7 +35,7 @@ public abstract class AbstractS3BaseFileService<P extends S3BaseParam> extends A
     private SystemConfigService systemConfigService;
 
     @Override
-    public List<FileItemResult> fileList(String folderPath) {
+    public List<FileItemResult> fileList(String folderPath, String searchName) {
         return s3FileList(folderPath);
     }
 

@@ -150,7 +150,7 @@ public class GoogleDriveServiceImpl extends AbstractProxyTransferService<GoogleD
 	}
 
 	@Override
-	public List<FileItemResult> fileList(String folderPath) throws Exception {
+	public List<FileItemResult> fileList(String folderPath, String searchName) throws Exception {
 		List<FileItemResult> result = new ArrayList<>();
 
 		String folderId = getIdByPath(folderPath);

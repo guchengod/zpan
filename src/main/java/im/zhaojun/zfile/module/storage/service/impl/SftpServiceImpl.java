@@ -53,7 +53,7 @@ public class SftpServiceImpl extends AbstractProxyTransferService<SftpParam> {
 	}
 
 	@Override
-	public List<FileItemResult> fileList(String folderPath) throws Exception {
+	public List<FileItemResult> fileList(String folderPath, String searchName) throws Exception {
 		sftp.reconnectIfTimeout();
 		List<FileItemResult> result = new ArrayList<>();
 

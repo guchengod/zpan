@@ -59,7 +59,7 @@ public class FtpServiceImpl extends AbstractProxyTransferService<FtpParam> {
 
 
     @Override
-    public synchronized List<FileItemResult> fileList(String folderPath) {
+    public synchronized List<FileItemResult> fileList(String folderPath, String searchName) {
         ftp.reconnectIfTimeout();
         String fullPath = StringUtils.concat(param.getBasePath(), folderPath);
         ftp.cd(fullPath);

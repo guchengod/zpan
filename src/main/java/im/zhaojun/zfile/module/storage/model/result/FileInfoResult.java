@@ -23,4 +23,6 @@ public class FileInfoResult {
 	@ApiModelProperty(value="当前目录密码路径表达式")
 	private String passwordPattern;
 
+	private String searchVal;
+
 }

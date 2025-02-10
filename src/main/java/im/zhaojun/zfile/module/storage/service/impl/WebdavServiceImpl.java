@@ -62,7 +62,7 @@ public class WebdavServiceImpl extends AbstractProxyTransferService<WebdavParam>
 	}
 
 	@Override
-	public List<FileItemResult> fileList(String folderPath) throws Exception {
+	public List<FileItemResult> fileList(String folderPath, String searchName) throws Exception {
 		List<FileItemResult> resultList = new ArrayList<>();
 
 		String requestUrl = getRequestPath(folderPath);

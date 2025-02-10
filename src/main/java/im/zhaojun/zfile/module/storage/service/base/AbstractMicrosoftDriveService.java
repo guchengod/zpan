@@ -182,7 +182,7 @@ public abstract class AbstractMicrosoftDriveService<P extends MicrosoftDrivePara
     }
 
     @Override
-    public List<FileItemResult> fileList(String folderPath) {
+    public List<FileItemResult> fileList(String folderPath, String searchName) {
         folderPath = StringUtils.trimStartSlashes(folderPath);
         String fullPath = StringUtils.concatTrimEndSlashes(param.getBasePath(), folderPath);
 
